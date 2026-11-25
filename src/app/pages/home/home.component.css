@@ -1,0 +1,109 @@
+.home {
+  max-width: 620px;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.lead {
+  margin: 0.75rem 0 2rem;
+  color: var(--ink-soft);
+}
+
+.search {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+label {
+  font-weight: 600;
+}
+
+input[type='text'] {
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--ink-soft);
+  border-radius: var(--radius);
+  font: inherit;
+  color: var(--ink);
+}
+
+input[type='text'][aria-invalid='true'] {
+  border-color: var(--danger);
+}
+
+.error {
+  min-height: 1.5rem;
+  color: var(--danger);
+  font-size: 0.95rem;
+}
+
+.units {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.units legend {
+  margin-bottom: 0.4rem;
+  padding: 0;
+  font-weight: 600;
+}
+
+.choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 400;
+}
+
+.quick {
+  margin-top: 2rem;
+}
+
+.quick h2 {
+  font-size: 1.15rem;
+}
+
+.heading-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chips a {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.chips a:hover {
+  border-color: var(--sky);
+  color: var(--sky);
+}

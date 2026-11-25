@@ -1,0 +1,67 @@
+<section class="home">
+  <h1>Check the weather in any city</h1>
+  <p class="lead">See current conditions and a 7-day outlook. Search by city name.</p>
+
+  <form class="search" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <div class="field">
+      <label for="city">City</label>
+      <input
+        id="city"
+        type="text"
+        formControlName="city"
+        autocomplete="off"
+        placeholder="For example, Mumbai"
+        [attr.aria-invalid]="city.invalid && city.touched"
+        aria-describedby="city-error"
+      />
+      <div id="city-error" class="error" aria-live="polite">
+        @if (city.touched && city.invalid) {
+          @if (city.hasError('required') || city.hasError('blank')) {
+            Enter a city name.
+          } @else if (city.hasError('minlength')) {
+            City names need at least 2 characters.
+          } @else if (city.hasError('pattern')) {
+            Use letters, spaces, hyphens or apostrophes only.
+          }
+        }
+      </div>
+    </div>
+
+    <fieldset class="units">
+      <legend>Units</legend>
+      <label class="choice">
+        <input type="radio" formControlName="units" value="metric" />
+        Metric (°C, km/h)
+      </label>
+      <label class="choice">
+        <input type="radio" formControlName="units" value="imperial" />
+        Imperial (°F, mph)
+      </label>
+    </fieldset>
+
+    <button type="submit" class="btn">Show forecast</button>
+  </form>
+
+  <section class="quick" aria-labelledby="popular-title">
+    <h2 id="popular-title">Popular cities</h2>
+    <ul class="chips">
+      @for (name of popular; track name) {
+        <li><a [routerLink]="['/weather', name]" [queryParams]="{ units: units }">{{ name }}</a></li>
+      }
+    </ul>
+  </section>
+
+  @if (history.recent().length) {
+    <section class="quick" aria-labelledby="recent-title">
+      <div class="heading-row">
+        <h2 id="recent-title">Recent searches</h2>
+        <button type="button" class="link-button" (click)="history.clear()">Clear recent searches</button>
+      </div>
+      <ul class="chips">
+        @for (name of history.recent(); track name) {
+          <li><a [routerLink]="['/weather', name]" [queryParams]="{ units: units }">{{ name }}</a></li>
+        }
+      </ul>
+    </section>
+  }
+</section>

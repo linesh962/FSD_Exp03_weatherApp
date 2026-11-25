@@ -1,0 +1,17 @@
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="bar">
+  <a routerLink="/" class="brand">Weatherwise</a>
+  <nav aria-label="Main">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Search</a>
+    <a routerLink="/about" routerLinkActive="active">About</a>
+  </nav>
+</header>
+
+<main id="main">
+  <router-outlet />
+</main>
+
+<footer class="foot">
+  Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a>
+</footer>

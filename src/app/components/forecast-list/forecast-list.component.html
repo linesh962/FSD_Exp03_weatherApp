@@ -1,0 +1,17 @@
+<section class="forecast" aria-labelledby="forecast-title">
+  <h2 id="forecast-title">7-day forecast</h2>
+  <ol class="days">
+    @for (day of rows(); track day.date) {
+      <li class="day">
+        <span class="name">{{ day.isToday ? 'Today' : (day.date | date: 'EEE d MMM') }}</span>
+        <span class="icon" role="img" [attr.aria-label]="day.label">{{ day.icon }}</span>
+        <span class="low">{{ day.tempMin | number: '1.0-0' }}°</span>
+        <span class="range" aria-hidden="true">
+          <span class="fill" [style.left.%]="day.left" [style.width.%]="day.width"></span>
+        </span>
+        <span class="high">{{ day.tempMax | number: '1.0-0' }}°</span>
+        <span class="rain">{{ day.precipitation | number: '1.0-1' }} {{ labels().rain }}</span>
+      </li>
+    }
+  </ol>
+</section>

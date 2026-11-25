@@ -1,0 +1,38 @@
+<section class="current" aria-labelledby="place-name">
+  <header>
+    <h1 id="place-name">{{ report().location.name }}</h1>
+    <p class="region">
+      @if (report().location.admin1) {
+        {{ report().location.admin1 }},
+      }
+      {{ report().location.country }}
+    </p>
+  </header>
+
+  <div class="hero">
+    <span class="icon" role="img" [attr.aria-label]="conditions().label">{{ conditions().icon }}</span>
+    <p class="temp">
+      {{ report().current.temperature | number: '1.0-0' }}<span class="unit">{{ labels().temp }}</span>
+    </p>
+  </div>
+  <p class="summary">{{ conditions().label }}</p>
+
+  <dl class="facts">
+    <div>
+      <dt>Feels like</dt>
+      <dd>{{ report().current.feelsLike | number: '1.0-0' }}{{ labels().temp }}</dd>
+    </div>
+    <div>
+      <dt>Humidity</dt>
+      <dd>{{ report().current.humidity }}%</dd>
+    </div>
+    <div>
+      <dt>Wind</dt>
+      <dd>{{ report().current.windSpeed | number: '1.0-0' }} {{ labels().wind }}</dd>
+    </div>
+  </dl>
+
+  <p class="updated">
+    Observed at {{ report().current.time | date: 'h:mm a' }}, local time in {{ report().location.name }}
+  </p>
+</section>

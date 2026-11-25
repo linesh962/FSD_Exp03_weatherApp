@@ -1,0 +1,30 @@
+<div class="page">
+  <a routerLink="/" class="back">Back to search</a>
+
+  @if (loading()) {
+    <p class="status" role="status">Loading the forecast for {{ city() }}…</p>
+  } @else if (error()) {
+    <div class="problem" role="alert">
+      <h1>Couldn't load the forecast</h1>
+      <p>{{ error() }}</p>
+      <div class="actions">
+        <button type="button" class="btn" (click)="retry()">Try again</button>
+        <a routerLink="/" class="btn secondary">Search another city</a>
+      </div>
+    </div>
+  } @else {
+    @if (report(); as r) {
+      <div class="layout">
+        <app-current-weather [report]="r" />
+        <div class="side">
+          <div class="toolbar">
+            <button type="button" class="btn secondary" (click)="toggleUnits()">
+              Show in {{ r.units === 'metric' ? '°F and mph' : '°C and km/h' }}
+            </button>
+          </div>
+          <app-forecast-list [days]="r.daily" [units]="r.units" />
+        </div>
+      </div>
+    }
+  }
+</div>
